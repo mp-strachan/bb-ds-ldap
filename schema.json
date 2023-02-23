@@ -1,0 +1,73 @@
+{
+  "type": "datasource",
+  "metadata": {},
+  "schema": {
+    "docs": "https://ldap.com/ldap-filters/",
+    "friendlyName": "LDAP",
+    "type": "Non-relational",
+    "description": "Perform LDAP Directory queries in Budibase",
+    "datasource": {
+      "host": {
+        "type": "string",
+        "required": true
+      },
+      "ldapPort": {
+        "type": "number",
+        "required": true
+      },
+      "userDN": {
+        "type": "string",
+        "required": false
+      },
+      "password": {
+        "type": "password",
+        "required": false
+      }
+    },
+    "query": {
+      "create": {
+        "type": "fields",
+        "fields": {
+          "objectDN": {
+            "display": "Object DN",
+            "type": "string",
+            "required": true
+          },
+          "attributes": {
+            "display": "Object Attributes",
+            "type": "json",
+            "required": false
+          }
+        }
+      },
+      "read": {
+        "type": "fields",
+        "fields": {
+          "searchDN": {
+            "display": "Base DN",
+            "type": "string",
+            "required": true
+          },
+          "options": {
+            "display": "Query Options",
+            "type": "json",
+            "required": false
+          }
+        }
+      },
+      "update": {
+        "type": "json"
+      },
+      "delete": {
+        "type": "fields",
+        "fields": {
+          "objDN": {
+            "display": "Object DN",
+            "type": "string",
+            "required": true
+          }
+        }
+      }
+    }
+  }
+}
