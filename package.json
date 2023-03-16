@@ -1,6 +1,6 @@
 {
   "name": "bb-ds-ldap",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Ldap datasource for Budibase",
   "main": "src/index.ts",
   "license": "MIT",
