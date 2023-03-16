@@ -13,20 +13,26 @@ class CustomIntegration implements IntegrationBase {
   private readonly userDN: string
   private readonly password: string
   private readonly client: Client
+  private readonly tlsOptions: object
 
   constructor(config: { host: string; ldapPort: number; userDN: string; password: string }) {
     this.host = config.host
     this.ldapPort = config.ldapPort
     this.userDN = config.userDN
     this.password = config.password
+    this.tlsOptions = {}
+
+    if (this.host.startsWith("ldaps://")) {
+      this.tlsOptions = {
+        minVersion: 'TLSv1.2',
+      }
+    }
 
     this.client = new Client({
-      url: this.host,
+      url: this.host + ":" + this.ldapPort,
       timeout: 0,
       connectTimeout: 0,
-      tlsOptions: {
-        minVersion: 'TLSv1.2',
-      },
+      tlsOptions: this.tlsOptions,
       strictDN: true,
     });
   }
